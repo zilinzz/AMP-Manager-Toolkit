@@ -57,15 +57,7 @@ git clone https://github.com/zilinzz/AMP-Manager-Toolkit.git
 cd AMP-Manager-Toolkit
 ```
 
-### Step 1: Clone the Repository
-
-```
-git add *.py
-git commit -m "your message"
-git push origin my-feature-branch
-```
-
-### Create a New Branch for Your Feature/Bugfix
+### Step 2: Create a New Branch for Your Feature/Bugfix
 To avoid conflicts with others' work, create a new branch for each feature or bugfix. Use descriptive branch names that represent the task at hand.
 
 ```
@@ -87,5 +79,5 @@ Push your branch to the shared repository：
 git push origin feature/my-feature
 ```
 
-### Submitting Pull Requests
+### Step 5: Submitting Pull Requests
 After rebasing, submit a **pull request** through the GitHub web interface. Wait for your peers to review your changes and merge them into the `main` branch.
