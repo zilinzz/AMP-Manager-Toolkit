@@ -1,34 +1,63 @@
 # AMP-Manager-Toolkit
 
-## Cloning the Repository
-To clone the repository and start working on the project, follow the instructions provided by GitHub at GitHub Docs on [Cloning a Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
+## Project Overview
+This project is focused on developing a chatbot that can interact with users, understand their queries, and respond intelligently using NLP and RAG techniques. The chatbot can handle basic conversations, provide information, and possibly integrate with external APIs and models like ChatGPT to enhance its functionality.
 
-For additional Git guides and best practices, refer to [Git Guides](https://github.com/git-guides).
+## Features
+* Natural language processing for understanding user intent
+* Basic conversation flows for FAQs and user guidance
 
-## Collaboration Workflow
-### Moving to the master Branch
-To switch to the master branch:
 
-```
-git checkout master
-```
+## Installation
 
-### Rebasing
-To rebase and update your local repository:
+### Step 1: Clone the repository
 
 ```
-git pull --rebase
+git clone https://github.com/zilinzz/AMP-Manager-Toolkit.git
+cd AMP-Manager-Toolkit
 ```
 
-### Working on Feature Branches
-To work on a feature branch:
+### Step 2: Set up a virtual environment
+It is recommended to use a virtual environment to avoid conflicts with system-wide packages.
 
 ```
-git checkout my-feature-branch
+# Create a virtual environment
+python3 -m venv venv
+
+# Activate the virtual environment (MacOS/Linux)
+source venv/bin/activate
+
+# On Windows
+venv\Scripts\activate
 ```
 
-### Committing Changes
-After implementing your feature, commit changes by only adding Python files (do not add `__pycache__` or similar):
+### Install dependencies
+Once the virtual environment is activated, install the required libraries by running:
+
+```
+pip install -r requirements.txt
+```
+
+## Running the Chatbot (Details TBD)
+
+```
+# Activate the virtual environment if not already active
+source venv/bin/activate
+
+# Run the chatbot (TBD)
+python #chatbot.py
+```
+
+## How to Contribute
+
+### Step 1: Clone the Repository
+
+```
+git clone https://github.com/zilinzz/AMP-Manager-Toolkit.git
+cd AMP-Manager-Toolkit
+```
+
+### Step 1: Clone the Repository
 
 ```
 git add *.py
@@ -36,14 +65,27 @@ git commit -m "your message"
 git push origin my-feature-branch
 ```
 
-### Rebasing onto master
-Before merging, rebase your branch onto master:
+### Create a New Branch for Your Feature/Bugfix
+To avoid conflicts with others' work, create a new branch for each feature or bugfix. Use descriptive branch names that represent the task at hand.
 
 ```
-git rebase master
+git checkout -b feature/my-feature
+```
+
+### Step 3: Make Your Changes and Commit
+Make the necessary changes to the codebase on your branch. Once you’re done, stage the changes and commit them with a meaningful message:
+
+```
+git add .
+git commit -m "Add my feature"
+```
+
+### Step 4: Push Your Branch to the Main Repository
+Push your branch to the shared repository：
+
+```
+git push origin feature/my-feature
 ```
 
 ### Submitting Pull Requests
-After rebasing, submit a pull request through the GitHub web interface. Wait for your peers to review your changes and merge them into the main branch.
-
-## Running the code
+After rebasing, submit a **pull request** through the GitHub web interface. Wait for your peers to review your changes and merge them into the `main` branch.
