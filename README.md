@@ -1,9 +1,9 @@
 # AMP-Manager-Toolkit
 
 ## Cloning the Repository
-To clone the repository and start working on the project, follow the instructions provided by GitHub at GitHub Docs on [Cloning a Repository][https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository].
+To clone the repository and start working on the project, follow the instructions provided by GitHub at GitHub Docs on [Cloning a Repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-For additional Git guides and best practices, refer to [Git Guides][https://github.com/git-guides].
+For additional Git guides and best practices, refer to [Git Guides](https://github.com/git-guides).
 
 ## Collaboration Workflow
 ### Moving to the master Branch
