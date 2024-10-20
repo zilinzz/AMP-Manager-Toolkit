@@ -12,21 +12,30 @@ from langchain_community.vectorstores import FAISS  # or Chroma
 load_dotenv()
 
 # Step 1: Load Documents
-directory = 'data'
-documents = []
-for filename in os.listdir(directory):
-    if filename.endswith('.pdf'):
-        filepath = os.path.join(directory, filename)
-        loader = PyPDFLoader(filepath)
-        docs = loader.load()
-        documents.extend(docs)
+# directory = 'data'
+# documents = []
+# for filename in os.listdir(directory):
+#     if filename.endswith('.pdf'):
+#         filepath = os.path.join(directory, filename)
+#         loader = PyPDFLoader(filepath)
+#         docs = loader.load()
+#         documents.extend(docs)
+
+
+# Step 1: Load Documents - google drive
+from langchain.document_loaders import GoogleDriveLoader
+loader = GoogleDriveLoader(document_ids=["1fELPJL4oaR4O-4YRgJU5MUKS_xlykOi3"],
+                          credentials_path="C:/Users/zhang/OneDrive/桌面/client_secret_294115675309-0l8uk1tpavgg10tfjitft6s8adnhn8vj.apps.googleusercontent.com.json")
+docs = loader.load()
+
+
 
 # Step 2: Split Documents
-text_splitter = RecursiveCharacterTextSplitter(
-    chunk_size=1000,
-    chunk_overlap=200,
-)
-split_docs = text_splitter.split_documents(documents)
+# text_splitter = RecursiveCharacterTextSplitter(
+#     chunk_size=1000,
+#     chunk_overlap=200,
+# )
+# split_docs = text_splitter.split_documents(documents)
 
 # Step 3: Get Embeddings
 openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -40,7 +49,7 @@ if not openai_api_key:
 embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
 # Step 4: Create & Save Vector Store
-vector_store = FAISS.from_documents(split_docs, embeddings)
+vector_store = FAISS.from_documents(docs, embeddings)
 vector_store.save_local("vectorstore")
 
 # Output the number of documents stored
@@ -70,7 +79,9 @@ if __name__ == "__main__":
     qa_chain = create_qa_chain()
 
     # Example question to ask the QA chain
-    question = "What is change management?"
+    question = "Can you give me the link to change management toolkit?"
+    # What is change management?
+    # What are the primary goals of IT change management?
     
     # Get the answer from the QA chain
     answer = qa_chain.invoke({"query": question})
