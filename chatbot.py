@@ -1,12 +1,15 @@
 # Import necessary modules
 import os
 from dotenv import load_dotenv
-from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+# from langchain_community.document_loaders import PyPDFLoader
+# from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
 from langchain.chains import RetrievalQA
 from langchain_openai import OpenAI
 from langchain_community.vectorstores import FAISS  # or Chroma
+from langchain_community.document_loaders import GoogleDriveLoader
+
+
 
 # Load environment variables
 load_dotenv()
@@ -23,9 +26,9 @@ load_dotenv()
 
 
 # Step 1: Load Documents - google drive
-from langchain.document_loaders import GoogleDriveLoader
-loader = GoogleDriveLoader(document_ids=["1fELPJL4oaR4O-4YRgJU5MUKS_xlykOi3"],
-                          credentials_path="C:/Users/zhang/OneDrive/桌面/client_secret_294115675309-0l8uk1tpavgg10tfjitft6s8adnhn8vj.apps.googleusercontent.com.json")
+credentials_path = "credentials.json"
+loader = GoogleDriveLoader(document_ids=["1qDZrBNQuNhIl11RaFmbLws9UX43SVTFH-sK70Lun2bU"],
+                          credentials_path=credentials_path)
 docs = loader.load()
 
 
