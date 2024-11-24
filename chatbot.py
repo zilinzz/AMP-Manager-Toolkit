@@ -8,11 +8,13 @@ from langchain.chains import RetrievalQA
 from langchain_openai import OpenAI
 from langchain_community.vectorstores import FAISS  # or Chroma
 from langchain_community.document_loaders import GoogleDriveLoader
-
+from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 
 # Load environment variables
 load_dotenv()
+
 
 # Step 1: Load Documents
 # directory = 'data'
@@ -24,6 +26,12 @@ load_dotenv()
 #         docs = loader.load()
 #         documents.extend(docs)
 
+app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000"])
+
+@app.route('/')
+def home():
+    return "Welcome to the QA chatbot server!"
 
 # Step 1: Load Documents - google drive
 credentials_path = "credentials.json"
@@ -77,16 +85,35 @@ def create_qa_chain():
 
     return qa_chain
 
+qa_chain = create_qa_chain()
+
 # Example usage
-if __name__ == "__main__":
-    qa_chain = create_qa_chain()
+# if __name__ == "__main__":
 
     # Example question to ask the QA chain
-    question = "Can you give me the link to change management toolkit?"
-    # What is change management?
-    # What are the primary goals of IT change management?
-    
+    # question = "Can you give me the link to change management toolkit?"
+    # question = "What are the two roles that the Change Management Toolkit is designed to support?"
+    # question = "What office organizes business process improvement at UC Berkeley?"
+    # question = "What services does the Business Process Management office provide?"
+    # question = "Name two types of resources available under the Project Management Resources section."
+    # question = "What are the primary goals of IT change management?"
+
     # Get the answer from the QA chain
-    answer = qa_chain.invoke({"query": question})
+    # answer = qa_chain.invoke({"query": question})
     
-    print(f"Answer: {answer}")
+    # print(f"Answer: {answer}")
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_input = request.json.get('message')
+    try:
+        answer = qa_chain.invoke({"query": user_input})
+        return jsonify({'response': answer}), 200
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+    
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5001)
+
+
+    
